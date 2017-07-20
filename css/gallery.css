@@ -1,0 +1,107 @@
+
+div.img {
+    border: 1px solid #ccc;
+}
+
+div.img:hover {
+    border: 1px solid #777;
+}
+
+div.img img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+
+div.description {
+    padding: 15px;
+    color :red;
+    text-align: center;
+}
+
+.gallery {
+    padding: 0 6px;
+    float: left;
+    width: 24.99999%;
+}
+
+.modal {
+    
+    display: -webkit-flex;
+    display: flex;
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+
+.modal-content {
+    margin-left: 15%;
+    display: block;
+    width: 40%;
+}
+
+#content {
+    width: 25%;
+    float: left;
+    margin-top: 0px;
+    display: block;
+    width: 400px;
+    text-align: center;
+    color: #ccc;
+    background: red;
+    padding: 10px 0;
+    height: 150px;
+}
+
+
+#img01{
+    width: 75%;
+    float: left;
+}
+
+
+.modal-content, #content {    
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+
+@-webkit-keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0.1)} 
+    to {transform:scale(1)}
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
