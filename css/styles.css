@@ -1,0 +1,61 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+#header {
+  -ms-display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+  padding-left: 20px;
+  font-family: 'Amatic SC', cursive;
+  font-size: 50px;
+  background: -webkit-linear-gradient(#E3E3E3, #7074A5);
+  background: -moz-linear-gradient(#E3E3E3, #7074A5);
+  background: -o-linear-gradient(#E3E3E3, #7074A5);
+}
+
+#cont_all {
+  -ms-display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+#cont_gal {
+  -ms-display: flex;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  width: 1040px;
+  background: -webkit-linear-gradient(#E3E3E3, #7074A5);
+  background: -moz-linear-gradient(#E3E3E3, #7074A5);
+  background: -o-linear-gradient(#E3E3E3, #7074A5);
+}
+
+.photo {
+  font-family: 'Indie Flower', cursive;
+  font-size: 20px;
+  margin: 10px 10px 10px 10px;
+}
