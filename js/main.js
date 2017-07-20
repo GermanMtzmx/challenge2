@@ -3,7 +3,9 @@
 	
 	if(initialExist){
 		console.log("localStorage exists");
-		window.myData = initialExist
+		console.log(initialExist)
+		window.myData = JSON.parse(initialExist);
+
 		
 
 	} else {
@@ -11,24 +13,24 @@
 		initData = {
 			user: "Usuario de prueba juanito",
 			title: "Mis paisajes",
-			galery:[
+			gallery:[
 				
 				{
 					name:"Paisaje uno",
-					src:'/img/img1.jpg',
+					src:'img/img1.jpg',
 					description:"Imagen de paisaje uno",
 
 				},
 
 				{
 					name:"Paisaje dos",
-					src:'/img/img2.jpg',
+					src:'img/img2.jpg',
 					description:"Imagen de paisaje dos",
 				},
 
 				{
 					name:"Paisaje tres",
-					src:'/img/img3.jpg',
+					src:'img/img3.jpg',
 					description:"Imagen de paisaje tres",
 				}
 			],
@@ -40,6 +42,16 @@
 })(window);
 
 const data = window.myData;
+console.log(data.gallery);
+const container = document.getElementById('gallery')
+
+for(let i in data.gallery){
+	let currentImage = data.gallery[i];
+	img = document.createElement('img')
+	img.src = currentImage.src
+	container.appendChild(img)
+	
+}
 
 
 
