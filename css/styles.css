@@ -76,6 +76,7 @@ body {
 
 .photo:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
 }
 
 .photo p {
@@ -98,4 +99,23 @@ body {
   height: 163px;
   cursor: pointer;
   border-radius: 3px;
+}
+
+
+.likeIcon, .dislikeIcon {
+  margin: 5px 10px;
+  cursor: pointer;
+  font-size: 25px;
+  transition: 0.3s;
+  color:#546E7A;
+}
+
+.likeIcon:hover {
+  color: #3949AB;
+  transition: 0.3s;
+}
+
+.dislikeIcon:hover{
+  color:#e53935;
+  transition: 0.3s;
 }

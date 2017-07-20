@@ -1,9 +1,9 @@
 'use strict';
-var modal = document.getElementById('modalDescription');
-var images = document.getElementsByTagName('img');
-
-//container 
+const modal = document.getElementById('modalDescription');
+const modalClose = document.getElementsByClassName("close")[0];
+const images = document.getElementsByTagName('img');
 const container = document.getElementById('cont_gal');
+
 // set initial data
 (function setInitialData(obj){
 	let initialExist = window.localStorage.getItem('data');
@@ -14,7 +14,7 @@ const container = document.getElementById('cont_gal');
 
 	} else {
 		console.log("set localStorage");
-		initData = {
+		let initData = {
 			user: "Usuario de prueba juanito",
 			title: "Mis paisajes",
 			gallery:[
@@ -25,6 +25,7 @@ const container = document.getElementById('cont_gal');
 					src:'img/img1.jpg',
 					description:"Imagen de paisaje uno",
 					comments: [],
+					likes:0,
 
 
 				},
@@ -35,47 +36,62 @@ const container = document.getElementById('cont_gal');
 					src:'img/img2.jpg',
 					description:"Imagen de paisaje dos",
 					comments:[],
+					likes:0,
+
 				},
 
 				{	id:"img3",
 					name:"Paisaje tres",
 					src:'img/img3.jpg',
 					description:"Imagen de paisaje tres",
-					comments:[]
+					comments:[],
+					likes:0,
+
 				},
 
 				{	id:"img4",
 					name:"Paisaje cuatro",
 					src:'img/img4.jpg',
 					description:"Imagen de paisaje cuatro",
-					comments:[]
+					comments:[],
+					likes:0,
+
+
 				},
 				
 				{	id:"img5",
 					name:"Paisaje cinco",
 					src:'img/img5.jpg',
 					description:"Imagen de paisaje cinco",
-					comments:[]
+					comments:[],
+					likes:0,
+
 				},
 				{	id:"img6",
 					name:"Paisaje seis",
 					src:'img/img6.jpg',
 					description:"Imagen de paisaje seis",
-					comments:[]
+					comments:[],
+					likes:0,
+
 				},
 
 				{	id:"img7",
 					name:"Paisaje siete",
 					src:'img/img7.jpg',
 					description:"Imagen de paisaje siete",
-					comments:[]
+					comments:[],
+					likes:0,
+
 				},
 
 				{	id:"img8",
 					name:"Paisaje ocho",
 					src:'img/img8.jpg',
 					description:"Imagen de paisaje ocho",
-					comments:[]
+					comments:[],
+					likes:0,
+
 				}																			
 			],
 		};
@@ -108,9 +124,21 @@ function ModalTools(){
 			description.innerHTML = currentImage.description
 			description.classList.add('photoDescription');
 
+			let likeContainer = document.createElement('div');
+			likeContainer.classList.add('iconContainer');
+			let likeIcon = document.createElement('i');
+			likeIcon.classList.add('fa','fa-thumbs-o-up','likeIcon');
+
+			let dislikeIcon = document.createElement('i');
+			dislikeIcon.classList.add('fa','fa-thumbs-o-down','dislikeIcon');
+
+			likeContainer.append(likeIcon);
+			likeContainer.append(dislikeIcon);
+
 			container.append(image);
 			container.append(name);
 			container.append(description);
+			container.append(likeContainer);
 			el.append(container);
 	
 		}
@@ -139,11 +167,9 @@ function ModalTools(){
 	};
 }
 
-
 //call render and do stuff
 const init = new ModalTools();
 init.render(container);
-const modalClose = document.getElementsByClassName("close")[0];
 modalClose.addEventListener('click',init.closeModal);
 
 
