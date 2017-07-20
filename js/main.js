@@ -97,11 +97,15 @@ function ModalTools(){
 			image.src = currentImage.src;
 			image.alt = currentImage.name;
 			image.id = currentImage.id;
+			let name = document.createElement('p');
+			name.innerHTML = currentImage.name;
 			let description = document.createElement('p');
-			description.innerHTML = currentImage.name;
+			description.innerHTML = currentImage.description
+			description.classList.add('photoDescription')
 
 			container.append(image);
-			container.append(description);
+			container.append(name);
+			container.append(description)
 			el.append(container);
 	
 		}
