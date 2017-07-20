@@ -27,14 +27,21 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  font-size: 1.7rem;
   height: 80px;
-  padding-left: 20px;
   font-family: 'Roboto', sans-serif;
-  font-size: 50px;
-  background: -webkit-linear-gradient(#E3E3E3, #7074A5);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background-color: #26A69A;
+  color:#fafafa;
+
+/*  background: -webkit-linear-gradient(#E3E3E3, #7074A5);
   background: -moz-linear-gradient(#E3E3E3, #7074A5);
-  background: -o-linear-gradient(#E3E3E3, #7074A5);
+  background: -o-linear-gradient(#E3E3E3, #7074A5);*/
+}
+
+#header p i {
+  margin-right: 3px;
+  display: inline-flex;
 }
 
 #cont_all {
