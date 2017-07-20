@@ -1,13 +1,6 @@
+'use strict';
 var modal = document.getElementById('modalDescription');
-
-var span = document.getElementsByClassName("close")[0];
-
-span.onclick = function() { 
-    modal.style.display = "none";
-}
-
 var images = document.getElementsByTagName('img');
-
 
 //container 
 const container = document.getElementById('cont_gal');
@@ -17,7 +10,6 @@ const container = document.getElementById('cont_gal');
 	
 	if(initialExist){
 		console.log("localStorage exists");
-		console.log(initialExist)
 		window.myData = JSON.parse(initialExist);
 
 	} else {
@@ -114,11 +106,11 @@ function ModalTools(){
 			name.innerHTML = currentImage.name;
 			let description = document.createElement('p');
 			description.innerHTML = currentImage.description
-			description.classList.add('photoDescription')
+			description.classList.add('photoDescription');
 
 			container.append(image);
 			container.append(name);
-			container.append(description)
+			container.append(description);
 			el.append(container);
 	
 		}
@@ -129,24 +121,29 @@ function ModalTools(){
 		let modal = document.getElementById('modalDescription');
 		let currentElement = document.getElementById(this.id);
 		let modalImg = document.getElementById("img01");
-		modal.style.display = "block";
+		modal.classList.add('modal-show');
 		modalImg.src = currentElement.src;
 		modalImg.alt = currentElement.alt;
 	}
 
 	function closeModal(){
-		console.log("modal closed")
+		console.log('closed');
+		modal.classList.remove('modal-show');
+		
 	}
 
 	return {
 		render:render,
 		openModal:openModal,
 		closeModal:closeModal
-	}
+	};
 }
 
 
 //call render and do stuff
-init = new ModalTools();
+const init = new ModalTools();
 init.render(container);
+const modalClose = document.getElementsByClassName("close")[0];
+modalClose.addEventListener('click',init.closeModal);
+
 

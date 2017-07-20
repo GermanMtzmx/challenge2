@@ -11,10 +11,14 @@
     overflow: auto; 
     background-color: rgb(0,0,0); 
     background-color: rgba(0,0,0,0.4);
-    display: none; 
+    display: none;
+
+     
 }
 
-
+.modal-show {
+    display: block;
+}
 .modal-content {
     margin-left: 35%;
     display: block;
