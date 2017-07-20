@@ -1,3 +1,14 @@
+var modal = document.getElementById('modalDescription');
+
+var span = document.getElementsByClassName("close")[0];
+
+span.onclick = function() { 
+    modal.style.display = "none";
+}
+
+var images = document.getElementsByTagName('img');
+
+
 //container 
 const container = document.getElementById('cont_gal');
 // set initial data
@@ -97,6 +108,8 @@ function ModalTools(){
 			image.src = currentImage.src;
 			image.alt = currentImage.name;
 			image.id = currentImage.id;
+			image.addEventListener('click',openModal);
+
 			let name = document.createElement('p');
 			name.innerHTML = currentImage.name;
 			let description = document.createElement('p');
@@ -111,10 +124,14 @@ function ModalTools(){
 		}
 	}
 
-	function openModal(el_id){
-		
-		let currentElement = document.getElementById(el_id);
-		console.log("element is : ",currentElement)
+	function openModal(){
+
+		let modal = document.getElementById('modalDescription');
+		let currentElement = document.getElementById(this.id);
+		let modalImg = document.getElementById("img01");
+		modal.style.display = "block";
+		modalImg.src = currentElement.src;
+		modalImg.alt = currentElement.alt;
 	}
 
 	function closeModal(){
