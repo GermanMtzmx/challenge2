@@ -1,0 +1,257 @@
+
+.modal {
+    
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+    display: none;
+
+     
+}
+
+.modal-show {
+    display: block;
+}
+.modal-content {
+    margin-left: 35%;
+    display: block;
+}
+
+#name{
+    color: blue;
+
+}
+
+#textProfile{
+    margin-right: 20%;
+    color: #365899;
+    font-weight: bold;
+    text-align: left;  
+}
+
+#imgProfile{
+vertical-align: middle;
+    width: 50px;
+    border-radius: 3px;
+    float: left;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+#profile{
+    width: 100%;
+    height: 70px;
+    background: #fff;
+}
+
+#imagDescription{
+    color: #000;
+    size: 12px;
+    margin-left: 19px;
+    text-align: left;
+    margin-bottom: 4px;
+}
+
+#descriptionsection{
+    margin-left: -30%;
+}
+
+#content {
+
+    width: 357px;
+    float: left;
+    height: 480px;
+
+
+    margin-top: 0px;
+    display: block;
+    text-align: center;
+    color: #ccc;
+    background: #fff;
+    padding: 10px 0;
+    position: relative;
+}
+
+
+#img01{
+
+    height: 500px;
+    width: 50%;
+    float: left;
+}
+
+
+.modal-content, #content {    
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+
+@-webkit-keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0.1)} 
+    to {transform:scale(1)}
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+div#reactions {
+    color: #4b4f56;
+    margin-top:6px;
+    border-top:1px solid #eee;
+    border-bottom:1px solid #eee;
+    padding-top: 5px;
+    box-sizing: border-box;
+    height: 30px;
+
+}
+
+
+div#reactions span:nth-child(2){
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    padding-left: 4px;
+    padding-right: 4px;
+
+}
+
+div#reactions span {
+    cursor: pointer;
+    margin:4px;
+}
+
+div#reactions span:hover {
+    text-decoration: underline;
+}
+
+div#totalLikes {
+    color:#5890ff;
+    height: 40px;
+}
+
+div#totalLikes span {
+    margin: 10px;
+    float: left;
+    display: inline-flex;
+
+}
+
+div#totalLikes span i {
+    color: #fff;
+    /* width: 10px; */
+    /* height: 10px; */
+    border-radius: 50%;
+    background-color: #5890ff;
+    width: 20px;
+    height: 20px;
+    /* padding: 4px; */
+    margin-right: 4px;
+}
+
+div#totalLikes span#totalCounterL {
+    margin: 0px 0px 0px 4px;
+}
+
+.makevisible {
+    visibility: visible !important;
+}
+
+div#inputComments {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    padding: 6px;
+    box-sizing: border-box;
+    background-color: #f6f7f9; 
+    visibility: hidden;
+
+
+}
+
+
+
+div#inputComments input img {
+    display: inline-block;
+}
+
+div#inputComments img#commenter {
+    width: 35px;
+    float: left;
+    margin-left: 10px;
+}
+div#inputComments input#commentBox {
+    outline: none;
+    border: 1px solid #eee;
+    width: 281px;
+    height: 30px;
+    text-indent: 10px;
+}
+
+div.comments {
+    max-height: 250px;
+
+}
+
+div.comment {
+    margin:3px 0;
+    height: 40px;
+}
+div.comment img.imgC {
+    width: 30px;
+    float: left;
+    margin-left: 10px;
+    margin-top:3px;
+}
+
+div.comment strong {
+    float: left;
+    vertical-align: middle;
+    margin-left: 10px;
+    color: #365899;
+}
+div.comment p { 
+    display: block;
+    text-align: left;
+    clear: both;
+    margin-left: 48px;
+    /* margin-top: -21px; */
+    float: left;
+    margin-top: -13px;
+    color: #4b4f56;
+    overflow: hidden;
+    line-height: 25px;
+    width: 288px;
+    height: 30px;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+}
