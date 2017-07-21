@@ -181,7 +181,7 @@ function ModalTools(){
 
 	function addComments(e){
 		
-		if(e.keyCode == 13){
+		if(e.keyCode == 13 && this.value != ''){
 
 			let current = this.getAttribute('data-id');
 			let object = document.getObjectById(current);
