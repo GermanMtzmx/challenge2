@@ -6,7 +6,7 @@ const container = document.getElementById('cont_gal');
 
 
 // set initial data
-(function setInitialData(obj){
+(function setInitialData(){
 	let initialExist = window.localStorage.getItem('data');
 	
 	if(initialExist){
@@ -16,8 +16,9 @@ const container = document.getElementById('cont_gal');
 	} else {
 		console.log("set localStorage");
 		let initData = {
-			user: "Usuario de prueba juanito",
+			user: "Mark sukaritas",
 			title: "Mis paisajes",
+			img: 'img/profile.jpg',
 			gallery:[
 				
 				{	
@@ -100,7 +101,20 @@ const container = document.getElementById('cont_gal');
 		window.myData = JSON.parse(window.localStorage.getItem('data'));
 	}
 
-})(window);
+	document.getObjectById = function (id){
+		for(let i of window.myData.gallery){
+			if(i.id  == id){
+				
+				return i;
+			}
+		}
+	};
+
+	window.saveLocalStorage = function saveLocalStorage(){
+		window.localStorage.setItem('data',JSON.stringify(window.myData));
+	};
+
+})(window,document);
 
 // tools utility
 function ModalTools(){
@@ -135,6 +149,8 @@ function ModalTools(){
 			likeCounter.id = "counter-"+currentImage.id;
 			likeCounter.innerHTML = 'likes:' + currentImage.likes;
 
+
+
 			// let dislikeIcon = document.createElement('i');
 			// dislikeIcon.classList.add('fa','fa-thumbs-o-down','dislikeIcon');
 			// dislikeIcon.setAttribute('data-id',currentImage.id);
@@ -151,59 +167,113 @@ function ModalTools(){
 		}
 	}
 
-	function getObjectById(id){
-		for(let i of window.myData.gallery){
-			if(i.id  == id){
-				
-				return i;
-			}
-		}
-	}
-
-	function saveLocalStorage(){
-		window.localStorage.setItem('data',JSON.stringify(window.myData));
-	}
-
 	function addLikes(){
 
 		let current = this.getAttribute('data-id');
-		console.log(current);
-		let object = getObjectById(current);
+		let object = document.getObjectById(current);
 		object.likes += 1;
 		document.getElementById('counter-'+current).innerHTML = 'likes: '+ object.likes;
 		document.getElementById('totalCounterL').innerHTML = 'likes: '+ object.likes;
 
-		saveLocalStorage();
+		window.saveLocalStorage();
 
 	}
 
+	function addComments(e){
+		
+		if(e.keyCode == 13){
+
+			let current = this.getAttribute('data-id');
+			let object = document.getObjectById(current);
+			let val = this.value;
+			let commentContainer = document.getElementsByClassName('comments')[0];
+			let commentBox = document.createElement('div');
+			let imageComenter = document.createElement('img');
+			let nameCommenter = document.createElement('strong');
+			let textComment = document.createElement('p');
+			object.comments.push(val);
+
+			commentBox.classList.add('comment');
+			imageComenter.src = 'img/steve.jpg';
+			imageComenter.classList.add('imgC');
+			nameCommenter.innerHTML = "Steve chambitas";
+			textComment.innerHTML = val;
+
+			object.comments.length > 4 ? commentContainer.style.overflowY = 'scroll' : console.log('none');
+			
+			commentBox.append(imageComenter);
+			commentBox.append(nameCommenter);
+			commentBox.append(textComment);
+
+			commentContainer.append(commentBox);
+
+			window.saveLocalStorage();
+			this.value = '';
+		}
+
+		
+	}
+
 	function openModal(){
-		let obj = getObjectById(this.id);
+		let obj = document.getObjectById(this.id);
 		let modal = document.getElementById('modalDescription');
 		let currentElement = document.getElementById(this.id);
 		let modalImg = document.getElementById("img01");
 		let desc = document.getElementById('imagDescription');
 		let nlikes = document.getElementById('totalCounterL');
 		let visor = document.getElementById('likeVisor');
+		let commentInput = document.getElementById('commentBox');
+		let nameProfile = document.getElementById('textProfile');
+
+		nameProfile.innerHTML = window.myData.user;
+		commentInput.setAttribute('data-id',obj.id);
 		modal.classList.add('modal-show');
 		modalImg.src = currentElement.src;
 		modalImg.alt = currentElement.alt;
 		desc.innerHTML = obj.description;
 		visor.setAttribute('data-id',obj.id);
-		nlikes.innerHTML = obj.likes + " likes"; 
+		nlikes.innerHTML = obj.likes + " likes";
+		const commentContainer = document.getElementsByClassName('comments')[0];
+	
+		//draw existents comments
+		obj.comments.length > 4 ? commentContainer.style.overflowY = 'scroll' : console.log('none');
+		for(let item of obj.comments){
+
+			let commentBox = document.createElement('div');
+			let imageComenter = document.createElement('img');
+			let nameCommenter = document.createElement('strong');
+			let textComment = document.createElement('p');
+
+			commentBox.classList.add('comment');
+			imageComenter.src = 'img/steve.jpg';
+			imageComenter.classList.add('imgC');
+			nameCommenter.innerHTML = "Steve chambitas";
+			textComment.innerHTML = item;
+
+			commentBox.append(imageComenter);
+			commentBox.append(nameCommenter);
+			commentBox.append(textComment);
+
+			commentContainer.append(commentBox);
+		}
 	}
 
 	function closeModal(){
 		modal.classList.remove('modal-show');
-		
+		const commentContainer = document.getElementsByClassName('comments')[0];
+		//clean modal comment container
+		while (commentContainer.firstChild) {
+		    commentContainer.removeChild(commentContainer.firstChild);
+		}	
+		document.getElementById('inputComments').classList.remove('makevisible');
 	}
 
 	return {
 		render:render,
 		openModal:openModal,
 		closeModal:closeModal,
-		getObjectById:getObjectById,
 		addLikes:addLikes,
+		addComments:addComments,
 	};
 }
 
@@ -215,11 +285,16 @@ modalClose.addEventListener('click',init.closeModal);
 //set icon events
 const likeIcons = document.getElementsByClassName('likeIcon');
 const likevisor = document.getElementById('likeVisor');
-console.log(likevisor);
+const commentInt = document.getElementById('commentBox');
+
 likevisor.addEventListener('click',init.addLikes);
+commentInt.addEventListener('keypress',init.addComments);
 
 for (let l of likeIcons){
 	l.addEventListener('click',init.addLikes);
 }
 
+document.getElementById('toggleComment').addEventListener('click',function(){
+	document.getElementById('inputComments').classList.add('makevisible');
+});
 
