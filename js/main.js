@@ -128,9 +128,11 @@ function ModalTools(){
 			likeContainer.classList.add('iconContainer');
 			let likeIcon = document.createElement('i');
 			likeIcon.classList.add('fa','fa-thumbs-o-up','likeIcon');
+			likeIcon.setAttribute('data-id',currentImage.id);
 
 			let dislikeIcon = document.createElement('i');
 			dislikeIcon.classList.add('fa','fa-thumbs-o-down','dislikeIcon');
+			dislikeIcon.setAttribute('data-id',currentImage.id);
 
 			likeContainer.append(likeIcon);
 			likeContainer.append(dislikeIcon);
@@ -140,7 +142,15 @@ function ModalTools(){
 			container.append(description);
 			container.append(likeContainer);
 			el.append(container);
-	
+		}
+	}
+
+	function getObjectById(){
+		console.log('hola');
+		for(let i of window.myData.gallery){
+			if(i.id  == this.getAttribute('data-id')){
+				console.log(i);
+			}
 		}
 	}
 
@@ -163,7 +173,8 @@ function ModalTools(){
 	return {
 		render:render,
 		openModal:openModal,
-		closeModal:closeModal
+		closeModal:closeModal,
+		getObjectById:getObjectById,
 	};
 }
 
@@ -171,5 +182,12 @@ function ModalTools(){
 const init = new ModalTools();
 init.render(container);
 modalClose.addEventListener('click',init.closeModal);
+const likeIcons = document.getElementsByClassName('likeIcon');
+console.log(likeIcons);
+
+for (let l of likeIcons){
+	console.log(l)
+	l.addEventListener('click',init.getObjectById);
+}
 
 
