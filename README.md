@@ -2,12 +2,12 @@
 
 I'm a spam text description..........
 
-##Members
+## Members
 **Carlos**
 **Genaro**
 **German**
 
-##Functionalities
+## Functionalities
 *Likes
 *Comments
 *Persistence
