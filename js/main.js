@@ -4,6 +4,7 @@ const modalClose = document.getElementsByClassName("close")[0];
 const images = document.getElementsByTagName('img');
 const container = document.getElementById('cont_gal');
 
+
 // set initial data
 (function setInitialData(obj){
 	let initialExist = window.localStorage.getItem('data');
@@ -129,13 +130,18 @@ function ModalTools(){
 			let likeIcon = document.createElement('i');
 			likeIcon.classList.add('fa','fa-thumbs-o-up','likeIcon');
 			likeIcon.setAttribute('data-id',currentImage.id);
+			let likeCounter = document.createElement('span');
+			likeCounter.classList.add('counter');
+			likeCounter.id = "counter-"+currentImage.id;
+			likeCounter.innerHTML = 'likes:' + currentImage.likes;
 
-			let dislikeIcon = document.createElement('i');
-			dislikeIcon.classList.add('fa','fa-thumbs-o-down','dislikeIcon');
-			dislikeIcon.setAttribute('data-id',currentImage.id);
+			// let dislikeIcon = document.createElement('i');
+			// dislikeIcon.classList.add('fa','fa-thumbs-o-down','dislikeIcon');
+			// dislikeIcon.setAttribute('data-id',currentImage.id);
 
+			// likeContainer.append(likeIcon);
 			likeContainer.append(likeIcon);
-			likeContainer.append(dislikeIcon);
+			likeContainer.append(likeCounter);
 
 			container.append(image);
 			container.append(name);
@@ -145,27 +151,49 @@ function ModalTools(){
 		}
 	}
 
-	function getObjectById(){
-		console.log('hola');
+	function getObjectById(id){
 		for(let i of window.myData.gallery){
-			if(i.id  == this.getAttribute('data-id')){
-				console.log(i);
+			if(i.id  == id){
+				
+				return i;
 			}
 		}
 	}
 
-	function openModal(){
+	function saveLocalStorage(){
+		window.localStorage.setItem('data',JSON.stringify(window.myData));
+	}
 
+	function addLikes(){
+
+		let current = this.getAttribute('data-id');
+		console.log(current);
+		let object = getObjectById(current);
+		object.likes += 1;
+		document.getElementById('counter-'+current).innerHTML = 'likes: '+ object.likes;
+		document.getElementById('totalCounterL').innerHTML = 'likes: '+ object.likes;
+
+		saveLocalStorage();
+
+	}
+
+	function openModal(){
+		let obj = getObjectById(this.id);
 		let modal = document.getElementById('modalDescription');
 		let currentElement = document.getElementById(this.id);
 		let modalImg = document.getElementById("img01");
+		let desc = document.getElementById('imagDescription');
+		let nlikes = document.getElementById('totalCounterL');
+		let visor = document.getElementById('likeVisor');
 		modal.classList.add('modal-show');
 		modalImg.src = currentElement.src;
 		modalImg.alt = currentElement.alt;
+		desc.innerHTML = obj.description;
+		visor.setAttribute('data-id',obj.id);
+		nlikes.innerHTML = obj.likes + " likes"; 
 	}
 
 	function closeModal(){
-		console.log('closed');
 		modal.classList.remove('modal-show');
 		
 	}
@@ -175,6 +203,7 @@ function ModalTools(){
 		openModal:openModal,
 		closeModal:closeModal,
 		getObjectById:getObjectById,
+		addLikes:addLikes,
 	};
 }
 
@@ -182,12 +211,15 @@ function ModalTools(){
 const init = new ModalTools();
 init.render(container);
 modalClose.addEventListener('click',init.closeModal);
+
+//set icon events
 const likeIcons = document.getElementsByClassName('likeIcon');
-console.log(likeIcons);
+const likevisor = document.getElementById('likeVisor');
+console.log(likevisor);
+likevisor.addEventListener('click',init.addLikes);
 
 for (let l of likeIcons){
-	console.log(l)
-	l.addEventListener('click',init.getObjectById);
+	l.addEventListener('click',init.addLikes);
 }
 
 

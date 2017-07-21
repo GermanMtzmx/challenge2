@@ -31,7 +31,7 @@ body {
   height: 80px;
   font-family: 'Roboto', sans-serif;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  background-color: #26A69A;
+  background-color: #3b5998;
   color:#fafafa;
 
 /*  background: -webkit-linear-gradient(#E3E3E3, #7074A5);
@@ -118,4 +118,10 @@ body {
 .dislikeIcon:hover{
   color:#e53935;
   transition: 0.3s;
+}
+
+.fakebook {
+    float: left;
+    width: 103%;
+    margin-left: 30px;
 }

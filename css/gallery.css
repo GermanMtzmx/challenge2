@@ -36,7 +36,9 @@
 }
 
 #imgProfile{
-    vertical-align:middle;
+    vertical-align: middle;
+    width: 50px;
+    border-radius: 3px;
 }
 
 #profile{
@@ -58,7 +60,7 @@
 
 #content {
 
-    width: 30%;
+    width: 357px;
     float: left;
     height: 480px;
 
@@ -116,3 +118,58 @@
     cursor: pointer;
 }
 
+div#reactions {
+    color: #4b4f56;
+    margin-top:6px;
+    border-top:1px solid #eee;
+    border-bottom:1px solid #eee;
+    padding-top: 5px;
+    box-sizing: border-box;
+    height: 30px;
+
+}
+
+
+div#reactions span:nth-child(2){
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    padding-left: 4px;
+    padding-right: 4px;
+
+}
+
+div#reactions span {
+    cursor: pointer;
+    margin:4px;
+}
+
+div#reactions span:hover {
+    text-decoration: underline;
+}
+
+div#totalLikes {
+    color:#5890ff;
+}
+
+div#totalLikes span {
+    margin: 10px;
+    float: left;
+    display: inline-flex;
+
+}
+
+div#totalLikes span i {
+    color: #fff;
+    /* width: 10px; */
+    /* height: 10px; */
+    border-radius: 50%;
+    background-color: #5890ff;
+    width: 20px;
+    height: 20px;
+    /* padding: 4px; */
+    margin-right: 4px;
+}
+
+div#totalLikes span#totalCounterL {
+    margin: 0px 0px 0px 4px;
+}
